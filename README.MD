@@ -28,4 +28,4 @@ Run the index.html file in your web browser.
 Incase you get stuck or experience some problem contact me through my email: edwinngigi313@gmail.com
 
 ### Live Link
-
+https://eduu-11287.github.io/Movie-project/
