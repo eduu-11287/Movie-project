@@ -1,18 +1,18 @@
-let api = 'cf5d0a76';
-let moviels = document.getElementById("list-movies");
-let searchBox = document.getElementById("search-box");
-let searchBtn = document.getElementById("search-btn");
-let favoritels = document.getElementById("favorite-ls");
+let api = 'cf5d0a76';// declearing assigning variable to a value
+let moviels = document.getElementById("list-movies");//linking the html element to js element by id
+let searchBox = document.getElementById("search-box");//linking the html element to js element by id
+let searchBtn = document.getElementById("search-btn");//linking the html element to js element by id
+let favoritels = document.getElementById("favorite-ls");//linking the html element to js element by id
 let favSearbox = document.getElementById("favourite-srbx")
-let favSearBx = document.getElementById("favorite-btn");
+let favSearBx = document.getElementById("favorite-btn");//linking the html element to js element by id
 
-let favorite = JSON.parse(localStorage.getItem('favorite')) || [];
+let favorite = JSON.parse(localStorage.getItem('favorite')) || []; //creating a local storage for the movies added into favorite 
 
-function movieFavorite(searchFav =favorite ) {
-    favoritels.innerHTML = ' ';
+function movieFavorite(searchFav =favorite ) {// this,function search for movies in the favorite array list
+    favoritels.innerHTML = ' ';// display sresults
     searchFav.forEach((movie, index) => {
-        let li = document.createElement('li');
-        li.innerHTML = `
+        let li = document.createElement('li');// creates an element with someattributes
+        li.innerHTML = `  
             <span id="m-title${index}">${movie.Title}</span>
             <input type="text" id="editedtl${index}" value="${movie.Title}" style="display: none";/>
             <div class="moviebtcont">
@@ -21,20 +21,20 @@ function movieFavorite(searchFav =favorite ) {
             <button onclick="deleteFav(${index})">Delete</button>
             </div>
         `;
-        favoritels.appendChild(li);
+        favoritels.appendChild(li);// outputsthe result of the element created above
     });
 }
 
 
-function edit(index) {
-    document.getElementById(`m-title${index}`).style.display ="none";
+function edit(index) { // the function edits the saved to favorite list
+    document.getElementById(`m-title${index}`).style.display ="none";//some styles are added to make the buttons look a bit ok
     document.getElementById(`editedtl${index}`).style.display ="block";
     document.getElementById(`savebtn${index}`).style.display ="inline-block";
 
 }
 
-function editSave(index){
-    let newTitle = document.getElementById(`editedtl${index}`).value;
+function editSave(index){ //allows user to save the edited content
+    let newTitle = document.getElementById(`editedtl${index}`).value; //the new edited content is store to the newTitle variableandcanbeaccessedby id
     if(newTitle){
         favorite[index].Title = newTitle;
     localStorage.setItem(`favorite`, JSON.stringify(favorite));
@@ -111,5 +111,4 @@ favSearBx.addEventListener('click', () => {
     let query = favSearbox.value.trim();
     searchFavorites(query)
 });
-
 movieFavorite();
